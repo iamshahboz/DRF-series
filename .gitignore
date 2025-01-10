@@ -1,2 +1,4 @@
 .venv
 time 
+core/migrations/__pycache__/
+../graphviz.png
