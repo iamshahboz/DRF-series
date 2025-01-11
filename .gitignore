@@ -3,4 +3,5 @@ time
 core/migrations/__pycache__/
 application/core/__pycache__/
 application/application/__pycache__/
+application/core/migrations/__pycache__/
 ../graphviz.png
