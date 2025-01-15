@@ -3,6 +3,7 @@ django-extensions==3.2.3
 djangorestframework==3.15.2
 pillow==11.1.0
 openpyxl==3.1.5
+django-silk-5.3.2
 
 
 

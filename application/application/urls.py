@@ -4,4 +4,5 @@ from django.urls import path, include
 urlpatterns = [
     path('',include('core.urls')),
     path('admin/', admin.site.urls),
+    path('silk/', include('silk.urls', namespace='silk')),
 ]
