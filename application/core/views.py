@@ -14,20 +14,15 @@ class ProductListAPIView(generics.ListAPIView):
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    lookup_url_kwarg = 'product_id'
 
+class OrderListAPIView(generics.ListAPIView):
+    queryset = Order.objects.prefetch_related('items__product')
+    serializer_class = OrderSerializer
 
-# we can write function based views
-# @api_view(['GET'])
-# def product_list(request):
-#     products = Product.objects.all()
-#     serializer = ProductSerializer(products, many=True)
-#     return Response(serializer.data)
-
-# @api_view(['GET'])
-# def product_detail(request, pk):
-#     product = get_object_or_404(Product, pk=pk)
-#     serializer = ProductSerializer(product)
-#     return Response(serializer.data)
+# think of the case where we might want to return the products which is not out of stock(stock> 0) and we have to override get_queryset
+# method 
+# queryset = Product.objects.filter(stock__gt=0)
 
 
 # @api_view(['GET'])
@@ -35,21 +30,4 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 #     products = get_list_or_404(Product)  # Get all customers or 404 if none exist
 #     return generate_excel(products)
 
-# @api_view(['GET'])
-# def order_list(request):
-#     orders = Order.objects.prefetch_related(
-#         'items__product').all()
-#     serializer = OrderSerializer(orders, many=True)
-#     return Response(serializer.data)
-
-
-# @api_view(['GET'])
-# def product_info(request):
-#     products = Product.objects.all()
-#     serializer = ProductInfoSerializer({
-#         'products': products,
-#         'count': len(products),
-#         'max_price': products.aggregate(max_price = Max('price'))['max_price']
-#     })
-#     return Response(serializer.data)
 
