@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .utils import generate_excel
 from django.db.models import Max 
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework import generics 
 
 class ProductListAPIView(generics.ListAPIView):
@@ -19,6 +20,16 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
 class OrderListAPIView(generics.ListAPIView):
     queryset = Order.objects.prefetch_related('items__product')
     serializer_class = OrderSerializer
+
+class UserOrderListAPIView(generics.ListAPIView):
+    queryset = Order.objects.prefetch_related('items__product')
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user 
+        qs = super().get_queryset()
+        return qs.filter(user=user)
 
 # think of the case where we might want to return the products which is not out of stock(stock> 0) and we have to override get_queryset
 # method 
