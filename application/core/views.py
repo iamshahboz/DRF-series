@@ -7,6 +7,7 @@ from .utils import generate_excel
 from django.db.models import Max 
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework import generics 
+from rest_framework.views import APIView
 
 class ProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.all()
@@ -30,6 +31,17 @@ class UserOrderListAPIView(generics.ListAPIView):
         user = self.request.user 
         qs = super().get_queryset()
         return qs.filter(user=user)
+    
+class ProductInfoAPIView(APIView):
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductInfoSerializer({
+            'products': products,
+            'count': len(products),
+            'max_price': products.aggregate(max_price=Max('price'))['max_price']
+        })
+        return Response(serializer.data)
+    
 
 # think of the case where we might want to return the products which is not out of stock(stock> 0) and we have to override get_queryset
 # method 
