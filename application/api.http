@@ -1,12 +1,22 @@
 GET http://localhost:8000/products HTTP/1.1
 
 ###
-POST http://localhost:8000/products/ 
+POST http://localhost:8000/products/ HTTP/1.1
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4NTA5MDE4LCJpYXQiOjE3Mzg1MDg3MTgsImp0aSI6IjRkYmYxYTNkNjA5MDRlMzk4MzZlYWQzNWEyN2YxYjBhIiwidXNlcl9pZCI6MX0.565vG1TYZkhWS73KwVVFj4ugVdoqrS70uYfmCkCjd4g
+
+{
+    "name": "PC",
+    "price": 750.00,
+    "stock": 26, 
+    "description": "This is an amazing pc"
+}
+
+###
+POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json 
 
 {
-    "name": "Television",
-    "price": 300.00,
-    "stock": 14, 
-    "description": "This is an amazing television"
+    "username": "admin",
+    "password": "toronto112"
 }
