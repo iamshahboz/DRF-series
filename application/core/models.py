@@ -51,6 +51,13 @@ class OrderItem(models.Model):
     
     def __str__(self):
         return f"{self.quantity} x {self.product.name} in Order {self.order.order_id}"
+    
+# Project models 
+class City(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 
