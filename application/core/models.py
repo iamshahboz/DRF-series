@@ -58,6 +58,20 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Город'
+        verbose_name_plural = 'Города'
+
+class Medicine(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+
+    def __str__(self):
+        return self.name 
+    
+    class Meta:
+        verbose_name = 'Лекарство'
+        verbose_name_plural = 'Лекарства'
 
 
 
