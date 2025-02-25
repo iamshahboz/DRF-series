@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'core',
     'rest_framework',
     'silk',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -124,6 +126,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
         
     ]
 }
