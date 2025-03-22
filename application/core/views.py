@@ -13,11 +13,12 @@ from rest_framework.permissions import (
     )
 from rest_framework import generics 
 from rest_framework.views import APIView
+from .filters import ProductFilter
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filterset_fields = ('name','price')
+    filterset_class = ProductFilter
 
     '''
     In the lines below, what we want to do is to resrict post request 
