@@ -17,6 +17,7 @@ from rest_framework.views import APIView
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filterset_fields = ('name','price')
 
     '''
     In the lines below, what we want to do is to resrict post request 
