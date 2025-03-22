@@ -52,70 +52,70 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} x {self.product.name} in Order {self.order.order_id}"
     
-# Project models 
+# # Project models 
 
-class CityChoices(models.TextChoices):
-    DUSHANBE = 1, 'Душанбе'
-    KHUJAND = 2, 'Худжанд'
-    KHORUG = 3, 'Хорог'
-    KULOB = 4, 'Куляб'
-    BOKHTAR = 5, 'Бохтар'
-    ISTARAVSHAN = 6, 'Истаравшан'
-    MURGOB = 7, 'Мургаб'
-    NORAK = 8, 'Нурек'
-    PANJAKENT = 9, 'Пенджикент'
-    VAKHSH = 10, 'Вахш'
-    HISOR = 11, 'Гисар'
-    ISFARA = 12, 'Исфара'
-    KONIBODOM = 13, 'Канибадам'
-    KURGONTEPPA = 14, 'Курагантюбе'
-    BUSTON = 15, 'Бустон'
-    GULISTON = 16, 'Гулистон'
-    TURSUNZODA = 17, 'Турсунзаде'
+# class CityChoices(models.TextChoices):
+#     DUSHANBE = 1, 'Душанбе'
+#     KHUJAND = 2, 'Худжанд'
+#     KHORUG = 3, 'Хорог'
+#     KULOB = 4, 'Куляб'
+#     BOKHTAR = 5, 'Бохтар'
+#     ISTARAVSHAN = 6, 'Истаравшан'
+#     MURGOB = 7, 'Мургаб'
+#     NORAK = 8, 'Нурек'
+#     PANJAKENT = 9, 'Пенджикент'
+#     VAKHSH = 10, 'Вахш'
+#     HISOR = 11, 'Гисар'
+#     ISFARA = 12, 'Исфара'
+#     KONIBODOM = 13, 'Канибадам'
+#     KURGONTEPPA = 14, 'Курагантюбе'
+#     BUSTON = 15, 'Бустон'
+#     GULISTON = 16, 'Гулистон'
+#     TURSUNZODA = 17, 'Турсунзаде'
 
 
-class City(models.Model):
-    name = models.IntegerField(choices=CityChoices.choices)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class City(models.Model):
+#     name = models.IntegerField(choices=CityChoices.choices)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
     
-    class Meta:
-        verbose_name = 'Город'
-        verbose_name_plural = 'Города'
+#     class Meta:
+#         verbose_name = 'Город'
+#         verbose_name_plural = 'Города'
 
-class Medicine(models.Model):
-    name = models.CharField(max_length=250, unique=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    manufacturer = models.CharField(max_length=100)
-    expired_at = models.DateField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class Medicine(models.Model):
+#     name = models.CharField(max_length=250, unique=True)
+#     price = models.DecimalField(max_digits=6, decimal_places=2)
+#     manufacturer = models.CharField(max_length=100)
+#     expired_at = models.DateField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.name 
+#     def __str__(self):
+#         return self.name 
     
-    class Meta:
-        verbose_name = 'Лекарство'
-        verbose_name_plural = 'Лекарства'
+#     class Meta:
+#         verbose_name = 'Лекарство'
+#         verbose_name_plural = 'Лекарства'
 
 
-class Pharmacy(models.Model):
-    name = models.CharField(max_length=100)
-    city = models.IntegerField(choices=CityChoices.choices)
-    phone_number = models.CharField(max_length=20)
-    debt = models.DecimalField(max_digits=6,decimal_places=2)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class Pharmacy(models.Model):
+#     name = models.CharField(max_length=100)
+#     city = models.IntegerField(choices=CityChoices.choices)
+#     phone_number = models.CharField(max_length=20)
+#     debt = models.DecimalField(max_digits=6,decimal_places=2)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return self.name 
+#     def __str__(self):
+#         return self.name 
     
-    class Meta:
-        verbose_name = 'Аптека'
-        verbose_name_plural = 'Аптеки'
+#     class Meta:
+#         verbose_name = 'Аптека'
+#         verbose_name_plural = 'Аптеки'
     
 
 
