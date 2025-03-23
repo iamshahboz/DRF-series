@@ -14,11 +14,23 @@ from rest_framework.permissions import (
 from rest_framework import generics 
 from rest_framework.views import APIView
 from .filters import ProductFilter
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filterset_class = ProductFilter
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+        ]
+    search_fields = ['name','description'] # url?search=vision    returns all items containing 'vision' in name or description
+    ordering_fields = ['name','price','stock'] # url?ordering=price --to get the reverse order just put - sign in the beginning
+
+    ''' we also need ordering filter
+    '''
 
     '''
     In the lines below, what we want to do is to resrict post request 
