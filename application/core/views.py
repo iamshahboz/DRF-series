@@ -16,6 +16,8 @@ from rest_framework.views import APIView
 from .filters import ProductFilter
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -37,11 +39,17 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     so that only Admin users can create a product
     '''
 
+    
+
     def get_permissions(self):
         self.permission_classes = [AllowAny]
         if self.request.method == 'POST':
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
+    
+    @method_decorator(cache_page(60)) # cache for 60 seconds 
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
  
 class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
