@@ -47,7 +47,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
             self.permission_classes = [IsAdminUser]
         return super().get_permissions()
     
-    @method_decorator(cache_page(60)) # cache for 60 seconds 
+    @method_decorator(cache_page(60 * 5)) # cache the result for 5 mins
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
