@@ -19,6 +19,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 
+
+# new way of caching the class based views
+# @method_decorator(cache_page(60 * 5), name='dispatch') 
+
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
