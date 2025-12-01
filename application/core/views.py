@@ -23,6 +23,8 @@ from django.utils.decorators import method_decorator
 # new way of caching the class based views
 # @method_decorator(cache_page(60 * 5), name='dispatch') 
 
+# you can clean the cache by running: python manage.py clear_cache
+
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
